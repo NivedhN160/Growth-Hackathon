@@ -1,0 +1,48 @@
+Write the final Launch Kit in the exact Markdown structure shown below. 
+Also produce a separate short social caption (≤ 280 chars).
+Tone: professional, clear, ready to publish with almost no editing.
+
+Output format (JSON):
+{
+  "markdown": "<Full Markdown Document Here>",
+  "caption": "<Social Caption Here>"
+}
+
+Exact Markdown format:
+
+# [Product Name] – [Strongest Hook]
+
+## What it is
+...
+
+## Why it exists / Problem it solves
+...
+
+## Key features
+- ...
+- ...
+- ...
+
+## How it works (technical overview)
+...
+
+## Getting started
+```bash
+...
+```
+
+## Who it’s for
+...
+
+## Why this is interesting right now
+...
+
+---
+
+### Ready-to-post social caption
+[≤ 280 characters]
+
+### Alternative hooks
+1. ...
+2. ...
+3. ...

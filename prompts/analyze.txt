@@ -1,0 +1,14 @@
+Extract the following information from the provided source material.
+Output a JSON object with the exact keys:
+- product_name (string)
+- one_line_hook (string, strongest hook)
+- what_it_is (string)
+- problem_it_solves (string)
+- key_features (list of strings)
+- how_it_works (string)
+- getting_started_commands (string)
+- target_audience (string)
+- why_it_matters_now (string)
+- alternative_hooks (list of exactly 3 strings)
+
+Hard rule: "Only use information present in the source. If something is missing, write 'Not specified in source'."
