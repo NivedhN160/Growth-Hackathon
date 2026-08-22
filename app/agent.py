@@ -44,5 +44,5 @@ def run(url: str) -> Path:
         sys.exit(1)
         
     print("→ Finished!")
-    print(f"\nCaption:\n{generated_data.caption}\n")
+    print(f"\n✓ Caption:\n{generated_data.caption}\n")
     return output_path
