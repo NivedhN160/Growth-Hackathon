@@ -2,6 +2,7 @@
 
 An unattended agent that produces high-quality, publish-ready explainers from any public URL.
 
+📖 **Read the [Architecture Documentation](ARCHITECTURE.md)** for a deep dive into how DemoForge works under the hood.
 ## Setup
 ```bash
 python -m venv .venv

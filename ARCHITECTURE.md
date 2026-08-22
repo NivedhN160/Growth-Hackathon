@@ -8,19 +8,18 @@ A strict four-stage pipeline (Fetch → Analyze → Generate → Save) that conv
 
 ## High-level flow
 
-```
-URL
-  │
-  ▼
-main.py          (CLI – Typer)
-  │
-  ▼
-agent.py         (Orchestrator – single run())
-  │
-  ├── fetcher.py     → real content
-  ├── analyzer.py    → structured JSON (Groq)
-  ├── generator.py   → Launch Kit Markdown + caption (Groq)
-  └── utils.py       → save to output/{slug}-launch-kit.md
+```mermaid
+flowchart TD
+    URL([Public URL]) --> main(main.py<br/>CLI - Typer)
+    main --> agent(agent.py<br/>Orchestrator - single run)
+    
+    agent --> fetcher(fetcher.py<br/>Real Content)
+    agent --> analyzer(analyzer.py<br/>Structured JSON / Groq)
+    agent --> generator(generator.py<br/>Launch Kit Markdown + Caption / Groq)
+    agent --> utils(utils.py<br/>Save to output/{slug}-launch-kit.md)
+    
+    fetcher -.-> analyzer
+    analyzer -.-> generator
 ```
 
 ## Layers
@@ -104,14 +103,19 @@ Exactly two LLM calls. No loops. No replanning.
 
 ## External dependencies
 
-```
-GitHub API  ──┐
-              ├──► cleaned content ──► Groq (2 calls) ──► Launch Kit .md
-Product URL ──┤
-              │
-         webcmd? ──yes──► browser extract
-              │
-              └──no───► httpx + BeautifulSoup
+```mermaid
+flowchart LR
+    GAPI[GitHub API] --> CC[Cleaned Content]
+    PURL[Product URL] --> WC{webcmd?}
+    
+    WC -- yes --> BE[browser extract]
+    WC -- no --> HBS[httpx + BeautifulSoup]
+    
+    BE --> CC
+    HBS --> CC
+    
+    CC --> GROQ[Groq LLM<br/>2 calls]
+    GROQ --> LK[Launch Kit .md]
 ```
 
 ## Failure model
