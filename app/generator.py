@@ -12,8 +12,9 @@ class GeneratorOutput(BaseModel):
 def generate(analysis: AnalysisOutput) -> GeneratorOutput:
     client = Groq(api_key=GROQ_API_KEY)
     
-    system_prompt = Path("prompts/system.txt").read_text(encoding="utf-8")
-    generate_prompt = Path("prompts/generate.txt").read_text(encoding="utf-8")
+    PROMPTS_DIR = Path(__file__).resolve().parent.parent / "prompts"
+    system_prompt = (PROMPTS_DIR / "system.txt").read_text(encoding="utf-8")
+    generate_prompt = (PROMPTS_DIR / "generate.txt").read_text(encoding="utf-8")
     
     user_message = f"{generate_prompt}\n\nAnalysis Data:\n{analysis.model_dump_json()}"
     

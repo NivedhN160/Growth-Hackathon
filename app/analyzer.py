@@ -16,13 +16,14 @@ class AnalysisOutput(BaseModel):
     getting_started_commands: str
     target_audience: str
     why_it_matters_now: str
-    alternative_hooks: List[str] = Field(..., min_length=3, max_length=3)
+    alternative_hooks: List[str] = Field(default_factory=list)
 
 def analyze(fetched_data: dict) -> AnalysisOutput:
     client = Groq(api_key=GROQ_API_KEY)
     
-    system_prompt = Path("prompts/system.txt").read_text(encoding="utf-8")
-    analyze_prompt = Path("prompts/analyze.txt").read_text(encoding="utf-8")
+    PROMPTS_DIR = Path(__file__).resolve().parent.parent / "prompts"
+    system_prompt = (PROMPTS_DIR / "system.txt").read_text(encoding="utf-8")
+    analyze_prompt = (PROMPTS_DIR / "analyze.txt").read_text(encoding="utf-8")
     
     truncated_content = truncate(fetched_data["content"], MAX_CONTENT_CHARS)
     
@@ -41,10 +42,18 @@ def analyze(fetched_data: dict) -> AnalysisOutput:
     result_text = response.choices[0].message.content
     try:
         data = json.loads(result_text)
-        return AnalysisOutput(**data)
     except Exception as e:
         if result_text.startswith("```json"):
             result_text = result_text[7:-3].strip()
             data = json.loads(result_text)
-            return AnalysisOutput(**data)
-        raise ValueError(f"Failed to parse analysis output: {e}")
+        else:
+            raise ValueError(f"Failed to parse analysis output: {e}")
+            
+    hooks = data.get("alternative_hooks") or []
+    if len(hooks) < 3:
+        hooks = (hooks + ["Not specified in source"] * 3)[:3]
+    else:
+        hooks = hooks[:3]
+    data["alternative_hooks"] = hooks
+    
+    return AnalysisOutput(**data)
