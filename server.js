@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { spawn } = require('child_process');
 const fs = require('fs/promises');
+const fsSync = require('fs');
 const path = require('path');
 
 const app = express();
@@ -21,8 +22,12 @@ app.post('/api/generate', (req, res) => {
     console.log(`Starting generation for: ${url}`);
     
     // Spawn the Python process
-    // Using the python executable in the active environment or system python
-    const pythonProcess = spawn('python', ['main.py', '--url', url]);
+    // Try to find the virtual environment python first, otherwise fallback to global
+    const venvWin = path.join(__dirname, '.venv', 'Scripts', 'python.exe');
+    const venvUnix = path.join(__dirname, '.venv', 'bin', 'python');
+    const pythonExecutable = fsSync.existsSync(venvWin) ? venvWin : (fsSync.existsSync(venvUnix) ? venvUnix : 'python');
+
+    const pythonProcess = spawn(pythonExecutable, ['main.py', '--url', url]);
 
     let stdout = '';
     let stderr = '';
