@@ -10,13 +10,13 @@ A strict four-stage pipeline (Fetch → Analyze → Generate → Save) that conv
 
 ```mermaid
 flowchart TD
-    URL([Public URL]) --> main(main.py<br/>CLI - Typer)
-    main --> agent(agent.py<br/>Orchestrator - single run)
+    URL([Public URL]) --> main("main.py<br/>CLI - Typer")
+    main --> agent("agent.py<br/>Orchestrator - single run")
     
-    agent --> fetcher(fetcher.py<br/>Real Content)
-    agent --> analyzer(analyzer.py<br/>Structured JSON / Groq)
-    agent --> generator(generator.py<br/>Launch Kit Markdown + Caption / Groq)
-    agent --> utils(utils.py<br/>Save to output/{slug}-launch-kit.md)
+    agent --> fetcher("fetcher.py<br/>Real Content")
+    agent --> analyzer("analyzer.py<br/>Structured JSON / Groq")
+    agent --> generator("generator.py<br/>Launch Kit Markdown + Caption / Groq")
+    agent --> utils("utils.py<br/>Save to output/{slug}-launch-kit.md")
     
     fetcher -.-> analyzer
     analyzer -.-> generator
@@ -106,7 +106,7 @@ Exactly two LLM calls. No loops. No replanning.
 ```mermaid
 flowchart LR
     GAPI[GitHub API] --> CC[Cleaned Content]
-    PURL[Product URL] --> WC{webcmd?}
+    PURL[Product URL] --> WC{"webcmd?"}
     
     WC -- yes --> BE[browser extract]
     WC -- no --> HBS[httpx + BeautifulSoup]
@@ -114,7 +114,7 @@ flowchart LR
     BE --> CC
     HBS --> CC
     
-    CC --> GROQ[Groq LLM<br/>2 calls]
+    CC --> GROQ["Groq LLM<br/>2 calls"]
     GROQ --> LK[Launch Kit .md]
 ```
 
