@@ -1,13 +1,10 @@
 :root {
-    --bg-dark: #0a0a0f;
-    --text-main: #f3f4f6;
-    --text-muted: #9ca3af;
-    --primary: #6366f1;
-    --primary-hover: #4f46e5;
-    --accent-1: #ec4899;
-    --accent-2: #8b5cf6;
-    --glass-bg: rgba(255, 255, 255, 0.03);
+    --bg-dark: #050505;
+    --text-main: #ffffff;
+    --text-muted: #888888;
+    --glass-bg: rgba(25, 25, 25, 0.4);
     --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-highlight: rgba(255, 255, 255, 0.15);
 }
 
 * {
@@ -17,7 +14,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--bg-dark);
     color: var(--text-main);
     min-height: 100vh;
@@ -29,7 +26,7 @@ body {
     position: relative;
 }
 
-/* Dynamic Background Orbs */
+/* Elegant Monochromatic Background Orbs */
 .background-elements {
     position: fixed;
     top: 0;
@@ -44,17 +41,17 @@ body {
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.5;
-    animation: float 20s infinite ease-in-out alternate;
+    filter: blur(120px);
+    opacity: 0.4;
+    animation: float 25s infinite ease-in-out alternate;
 }
 
 .orb-1 {
-    top: -10%;
+    top: -15%;
     left: -10%;
     width: 50vw;
     height: 50vw;
-    background: radial-gradient(circle, rgba(99,102,241,0.4) 0%, rgba(99,102,241,0) 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
 }
 
 .orb-2 {
@@ -62,22 +59,13 @@ body {
     right: -10%;
     width: 60vw;
     height: 60vw;
-    background: radial-gradient(circle, rgba(236,72,153,0.3) 0%, rgba(236,72,153,0) 70%);
+    background: radial-gradient(circle, rgba(200,200,200,0.1) 0%, rgba(200,200,200,0) 70%);
     animation-delay: -5s;
-}
-
-.orb-3 {
-    top: 30%;
-    left: 40%;
-    width: 40vw;
-    height: 40vw;
-    background: radial-gradient(circle, rgba(139,92,246,0.3) 0%, rgba(139,92,246,0) 70%);
-    animation-delay: -10s;
 }
 
 @keyframes float {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(10%, 10%) scale(1.1); }
+    100% { transform: translate(5%, 5%) scale(1.05); }
 }
 
 /* Layout container */
@@ -90,47 +78,39 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
 }
 
 .logo {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
-    letter-spacing: -0.05em;
-    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .subtitle {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-muted);
     font-weight: 400;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.5;
 }
 
-/* Glassmorphism Card */
+/* High-end Glassmorphism Card */
 .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     border: 1px solid var(--glass-border);
-    border-radius: 24px;
+    border-radius: 20px;
     padding: 3rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
-}
-
-.glass-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
 }
 
 /* Input Form */
@@ -142,59 +122,61 @@ header {
 
 input[type="url"] {
     flex: 1;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
     font-size: 1.1rem;
     color: var(--text-main);
     font-family: inherit;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
 
 input[type="url"]:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255,255,255,0.3);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 0 2px rgba(255,255,255,0.05);
 }
 
 input[type="url"]::placeholder {
-    color: #6b7280;
+    color: #555555;
 }
 
 button {
     font-family: inherit;
     cursor: pointer;
-    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 #submit-btn {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-2) 100%);
-    color: white;
+    background: #ffffff;
+    color: #000000;
+    border: none;
     border-radius: 12px;
     padding: 0 2rem;
     font-size: 1.1rem;
-    box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
 }
 
 #submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    transform: translateY(-1px);
+    background: #f0f0f0;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
 }
 
 #submit-btn:active {
-    transform: translateY(0);
+    transform: translateY(1px);
 }
 
 .secondary-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     color: white;
     border: 1px solid var(--glass-border);
     border-radius: 12px;
@@ -204,16 +186,18 @@ button {
 }
 
 .secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--glass-highlight);
 }
 
 .text-btn {
     background: transparent;
     color: var(--text-muted);
+    border: none;
     font-size: 0.9rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .text-btn:hover {
@@ -227,7 +211,7 @@ button {
     align-items: center;
     justify-content: center;
     text-align: center;
-    animation: fadeIn 0.4s ease forwards;
+    animation: fadeIn 0.5s ease forwards;
 }
 
 .hidden {
@@ -235,19 +219,19 @@ button {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Spinner */
+/* Minimal Spinner */
 .spinner {
-    width: 48px;
-    height: 48px;
-    border: 4px solid rgba(99, 102, 241, 0.2);
-    border-top-color: var(--primary);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #ffffff;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 1.5rem;
+    animation: spin 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    margin-bottom: 2rem;
 }
 
 @keyframes spin {
@@ -255,7 +239,7 @@ button {
 }
 
 .status-text {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
@@ -267,24 +251,24 @@ button {
 
 /* Success & Error */
 .success-icon {
-    color: #10b981;
-    margin-bottom: 1rem;
-    animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 .error-icon {
-    color: #ef4444;
-    margin-bottom: 1rem;
+    color: #ff4a4a;
+    margin-bottom: 1.5rem;
 }
 
-@keyframes bounceIn {
-    0% { transform: scale(0); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+@keyframes scaleIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 #success-state h3, #error-state h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
@@ -292,26 +276,37 @@ button {
     color: var(--text-muted);
 }
 
-/* Mini features */
+/* High-end Minimal Features */
 .features {
     display: flex;
     justify-content: center;
-    gap: 3rem;
-    margin-top: 3rem;
+    gap: 4rem;
+    margin-top: 4rem;
 }
 
 .feature {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .feature-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    opacity: 0.8;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
 }
 
 .feature h4 {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-main);
     margin-bottom: 0.25rem;
@@ -334,7 +329,7 @@ button {
 
     .features {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 2rem;
     }
     
     .glass-card {
